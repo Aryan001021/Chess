@@ -12,7 +12,7 @@ public class Pawn : ChessPiece,IChessPiece
         if (currentHighlight.GetComponent<Highlight>().CollisionCheck() == chessPieceColor.black)
         {
             Destroy(currentHighlight);
-        }
+        }//the step above pawn
         if (currentRow == 1)
         {
             currentHighlight=ChessBoardPlacementHandler.Instance.Highlight(currentRow + 2, currentCol);
@@ -20,29 +20,31 @@ public class Pawn : ChessPiece,IChessPiece
             {
                 Destroy(currentHighlight);
             }
-        }
+        }//if player is on row  1 then 2 steps ahead of pawn
         if (currentCol - 1 >= 0)
         {
             currentHighlight=ChessBoardPlacementHandler.Instance.Highlight(currentRow + 1, currentCol - 1);
             if (currentHighlight.GetComponent<Highlight>().CollisionCheck() == chessPieceColor.white)
             {
+                currentHighlight.GetComponent<Highlight>().ColorChange();//change highlight color to red for pawn 
             }
             else
             {
                 Destroy(currentHighlight);
             }
-        }
+        }//the upper left step if enemy is there
         if (currentCol + 1 < 8)
         {
             currentHighlight=ChessBoardPlacementHandler.Instance.Highlight(currentRow + 1, currentCol + 1);
             if (currentHighlight.GetComponent<Highlight>().CollisionCheck() == chessPieceColor.white)
             {
+                currentHighlight.GetComponent<Highlight>().ColorChange();//change highlight color to red for pawn
             }
             else
             {
                 Destroy(currentHighlight);
             }
-        }
+        }//the upper right step if enemy is there
     }
 
 
